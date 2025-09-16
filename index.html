@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>文化祭参加団体用ウェブサイト</title>
+<style>
+  body {
+    font-family: 'Arial', sans-serif;/*フォント設定*/
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+
+  /* カスタムフォント読み込み */
+  @font-face {/*おしゃ文字*/
+    font-family: 'MajorMonoDisplay';
+    src: url('static/fonts/MajorMonoDisplay-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {/*細字フォント*/
+    font-family: 'WorkSans';
+    src: url('static/fonts/WorkSans-Thin.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {/*日本語*/
+    font-family: 'KleeOne';
+    src: url('static/fonts/KleeOne-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {/*タイトル*/
+    font-family: 'Rubik80sFade';
+    src: url('static/fonts/Rubik80sFade-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {/*小見出し*/
+    font-family: 'Plaster';
+    src: url('static/fonts/Plaster-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {/*細字フォントⅡ*/
+    font-family: 'BungeeHairline';
+    src: url('static/fonts/BungeeHairline-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {/*筆記体*/
+    font-family: 'MonsieurLaDoulaise';
+    src: url('static/fonts/MonsieurLaDoulaise-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+
+  /*日程お知らせ設定*/
+  .info-section {
+  padding: 40px 20px;
+  background-color: #f9f9f9; /* 背景色を設定 */
+  text-align: center;
+  }
+
+.info-section h2 {
+  font-family: 'Plaster', sans-serif;
+  color: #AA9840 !important;
+  margin-bottom: 15px;
+}
+
+.info-section ul {
+  list-style: KleeOne;
+  padding: 0;
+  margin: 0 0 30px 0;
+  list-style: none; /* 番号やマーカーを消す */
+  padding-left: 0;  /* 左の余白も消す */
+  margin-left: 0;
+}
+
+.info-section li {
+  font-family: 'KleeOne', sans-serif;
+  margin-bottom: 10px;
+  color: #333;
+  font-size: 16px;
+  list-style: none; /* 番号やマーカーを消す */
+  padding-left: 0;  /* 左の余白も消す */
+  margin-left: 0;
+}
+
+
+  /* hero と背景 */
+  .hero {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .bg {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    z-index: 0;
+  }
+  .bg.active { opacity: 1; }
+
+  .hero-text p {
+    position: relative;
+    font-family: 'MonsieurLaDoulaise', sans-serif;
+    z-index: 1;
+    color: rgb(170, 152, 64);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+    font-size: 40px;
+  }
+
+  .hero-text h1 {
+    position: relative;
+    font-family: 'MajorMonoDisplay', sans-serif;
+    z-index: 1;
+    color: rgb(170, 152, 64);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+    font-size: 60px;
+  }
+
+  /* ヘッダー・ロゴ */
+  .header {
+    position: fixed;
+    top: 0; left: 0;
+    height: 100px;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 15px;
+    background: none;
+    z-index: 1200;
+  }
+  .logo img {
+    height: auto;
+    width: 80px;
+  }
+
+  /* 右上固定：ログイン・メニュー */
+  .header-container {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    z-index: 1000;
+  }
+  .header-container.hidden { opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+
+  .menu-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+  }
+  .header__menu {
+    width: 40px; height: 30px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    background: none; border: none; padding: 0;
+  }
+  .header__menu span {
+    display: block; height: 4px; width: 100%; background: #AA9840; border-radius: 2px;
+  }
+  .header__menu span:nth-child(1) { margin-bottom: 3px; }
+  .menu-label { margin-top: 5px; font-weight: bold; font-size: 14px; user-select: none; }
+
+  /* メニューリスト */
+   .h-nav__list { 
+    position: fixed; 
+    top: 0; right: 0; 
+    width: 250px; 
+    background: hsla(0, 0%, 100%, 0.795); 
+    box-shadow: -4px 0 8px rgba(0,0,0,0.2); 
+    padding: 20px;/* 上下10px、左右20pxの余白 */ 
+    display: flex; flex-direction: column; gap: 15px; 
+    transform: translateX(100%); 
+    opacity: 0; 
+    transition: transform 0.3s ease, opacity 0.3s ease; 
+    z-index: 1100; 
+    padding-top: 70px; 
+    height: 100vh; 
+    font-family: 'WorkSans', sans-serif; /* 好きなフォントに変更 */ 
+    font-size: 18px; /* 文字サイズ調整 */ 
+    color: #8d7e35; /* 文字色変更 */ 
+    text-align: center; /* 中央寄せ */ 
+} 
+  .h-nav__list.show { 
+    transform: translateX(0); 
+    opacity: 1; 
+} 
+  .h-nav__list a { 
+    text-decoration: none; 
+    color: #8d7e35; 
+    font-weight: bold; 
+    font-family: 'BungeeHairline', sans-serif;
+    font-size: 25px; 
+}
+ 
+ 
+   .close-menu {
+    position: absolute; top: 15px; right: 15px;
+    width: 30px; height: 30px;
+    background: transparent; border: none; cursor: pointer;
+    opacity: 0; transition: opacity 0.3s ease;
+  }
+  .h-nav__list.show .close-menu { opacity: 1; }
+  .close-menu span {
+    position: absolute; top: 50%; left: 50%;
+    width: 24px; height: 2px;
+    background-color: #AA9840;
+    border-radius: 2px;
+    transform-origin: center;
+  }
+  .close-menu span:first-child { transform: translate(-50%, -50%) rotate(45deg); }
+  .close-menu span:last-child { transform: translate(-50%, -50%) rotate(-45deg); }
+
+  .info-section {
+  padding: 40px 20px;
+  background-color: #f9f9f9;
+}
+
+.info-section h2 {
+  font-family: 'Foldit', sans-serif;
+  color: #AA9840;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* 各情報のボックス */
+.info-box {
+  border: 2px solid #AA9840; /* 四角の枠線 */
+  border-radius: 8px;         /* 角丸 */
+  padding: 15px 20px;
+  margin-bottom: 15px;
+  background-color: #fff;
+  text-align: center;           /* 中央寄せに変更 */
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+  font-family: 'KleeOne', sans-serif;
+}
+
+/* 日付のスタイル */
+.info-date {
+  display: block;
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 5px;
+  font-family: 'KleeOne', sans-serif;
+}
+
+/* 内容の段落 */
+.info-box p {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+}
+
+
+</style>
+</head>
+<body>
+
+  <!-- 左上ロゴ -->
+  <header class="header">
+    <div class="logo">
+      <img src="{{ url_for('static', filename='images/logo.png') }}" alt="サイトロゴ">
+    </div>
+  </header>
+
+  <!-- 右上：ログイン・メニュー -->
+  <div class="header-container">
+    <div class="menu-container">
+      <button type="button" class="header__menu js-menu">
+        <span></span>
+        <span></span>
+      </button>
+      <span class="menu-label">MENU</span>
+    </div>
+  </div>
+
+  <!-- メニューリスト -->
+  <div class="h-nav__list" id="menuList">
+    <button class="close-menu" id="closeMenu">
+      <span></span>
+      <span></span>
+    </button>
+    <a href="/">home</a>
+    <a href="/login">login</a>
+    <a href="/">infomation</a>
+    <a href="/">schedule</a>
+    <a href="/">materials</a>
+    <a href="/">question</a>
+  </div>
+
+  <!-- メインコンテンツ -->
+  <div class="hero">
+    <div class="hero-text">
+      <h1>KUSUNOKI FES</h1>
+      <p>participating organizations</p>
+    </div>
+  </div>
+
+  <!-- 文字の追加・ホーム -->
+  <div class="info-section">
+    <h2>infomation</h2>
+    <!-- 各情報を box クラスで囲む -->
+  <div class="info-box">
+    <span class="info-date">2025/09/15</span>
+    <p>多分くすのき祭は9月5日・6日に開催されます。</p>
+  </div>
+
+  <div class="info-box">
+    <span class="info-date">2025/09/15</span>
+    <p>参団検討会の日程は５月中を予定しています。</p>
+  </div>
+
+  <div class="info-box">
+    <span class="info-date">2025/09/15</span>
+    <p>ここから配布する資料を読むことができます。</p>
+  </div>
+
+  <div class="info-box">
+    <span class="info-date">2025/09/15</span>
+    <p>参団用のサイトを作成しました。初の試みなので不具合があった場合は連絡してください。</p>
+  </div>
+  
+    <h2>schedule</h2>
+    <ul>
+      <li>9月5日: くすのき祭一日目</li>
+      <li>9月6日: くすのき祭二日目/閉祭式</li>
+    </ul>
+  
+    <h2>materials</h2>
+    <ul>
+      <li>極意zero</li>
+      <li>極意Ⅰ</li>
+      <li>極意Ⅱ</li>
+      <li>極意Ⅲ</li>
+      <li>ゴミらぁ</li>
+      <li>vegetarian</li>
+      <li>satellite</li>
+      <li>tuber</li>
+      <li>paypay講習会</li>
+    </ul>
+  </div>
+  
+
+<script>
+// 背景画像の自動ループ
+const hero = document.querySelector('.hero');
+const images = [
+  '/static/images/bg1.jpg',
+  '/static/images/bg2.jpg',
+  '/static/images/bg3.jpg',
+  '/static/images/bg4.jpg'
+];
+
+let current = 0;
+
+// 背景要素を動的に作成
+images.forEach((src, index) => {
+  const div = document.createElement('div');
+  div.classList.add('bg');
+  if(index === 0) div.classList.add('active');
+  div.style.backgroundImage = `url('${src}')`;
+  hero.insertBefore(div, hero.firstChild);
+});
+
+const backgrounds = document.querySelectorAll('.bg');
+setInterval(() => {
+  backgrounds[current].classList.remove('active');
+  current = (current + 1) % backgrounds.length;
+  backgrounds[current].classList.add('active');
+}, 8000); // n*1000のとき、n秒ごとに切替
+
+// メニュー開閉
+const menuBtn = document.querySelector(".js-menu");
+const menuList = document.getElementById("menuList");
+const headerContainer = document.querySelector(".header-container");
+const closeBtn = document.getElementById("closeMenu");
+
+menuBtn.addEventListener("click", () => {
+  menuList.classList.add("show");
+  headerContainer.classList.add("hidden");
+});
+
+closeBtn.addEventListener("click", () => {
+  menuList.classList.remove("show");
+  headerContainer.classList.remove("hidden");
+});
+</script>
+
+</body>
+</html>
