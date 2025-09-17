@@ -12,6 +12,56 @@ body {
   color: #333;
 }
 
+  /* カスタムフォント読み込み */
+  @font-face {/*おしゃ文字*/
+    font-family: 'MajorMonoDisplay';
+    src: url('../static/fonts/MajorMonoDisplay-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {/*細字フォント*/
+    font-family: 'WorkSans';
+    src: url('../static/fonts/WorkSans-Thin.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {/*日本語*/
+    font-family: 'KleeOne';
+    src: url('../static/fonts/KleeOne-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {/*タイトル*/
+    font-family: 'Rubik80sFade';
+    src: url('../static/fonts/Rubik80sFade-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {/*小見出し*/
+    font-family: 'Plaster';
+    src: url('../static/fonts/Plaster-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {/*細字フォントⅡ*/
+    font-family: 'BungeeHairline';
+    src: url('../static/fonts/BungeeHairline-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {/*筆記体*/
+    font-family: 'MonsieurLaDoulaise';
+    src: url('../static/fonts/MonsieurLaDoulaise-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
 /* トップビュー背景 */
 .top-view {
   position: relative;
@@ -121,6 +171,79 @@ body {
   background-color: rgba(255,255,255,0.75); /* 背景色で区別 */
   border-top: 1px solid #ccc;
 }
+
+  /*日程お知らせ設定*/
+  .info-section {
+  padding: 40px 20px;
+  background-color: #f9f9f9; /* 背景色を設定 */
+  text-align: center;
+  }
+
+.info-section h2 {
+  font-family: 'Plaster', sans-serif;
+  color: #AA9840 !important;
+  margin-bottom: 15px;
+}
+
+.info-section ul {
+  list-style: KleeOne;
+  padding: 0;
+  margin: 0 0 30px 0;
+  list-style: none; /* 番号やマーカーを消す */
+  padding-left: 0;  /* 左の余白も消す */
+  margin-left: 0;
+}
+
+.info-section li {
+  font-family: 'KleeOne', sans-serif;
+  margin-bottom: 10px;
+  color: #333;
+  font-size: 16px;
+  list-style: none; /* 番号やマーカーを消す */
+  padding-left: 0;  /* 左の余白も消す */
+  margin-left: 0;
+}
+
+  .info-section {
+  padding: 40px 20px;
+  background-color: #f9f9f9;
+}
+
+.info-section h2 {
+  font-family: 'Foldit', sans-serif;
+  color: #AA9840;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* 各情報のボックス */
+.info-box {
+  border: 2px solid #AA9840; /* 四角の枠線 */
+  border-radius: 8px;         /* 角丸 */
+  padding: 15px 20px;
+  margin-bottom: 15px;
+  background-color: #fff;
+  text-align: center;           /* 中央寄せに変更 */
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+  font-family: 'KleeOne', sans-serif;
+}
+
+/* 日付のスタイル */
+.info-date {
+  display: block;
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 5px;
+  font-family: 'KleeOne', sans-serif;
+}
+
+/* 内容の段落 */
+.info-box p {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+}
+  
 </style>
 </head>
 <body>
@@ -148,6 +271,30 @@ body {
 <div id="docs" class="section">
   submission
 </div>
+
+  <!-- 文字の追加・ホーム -->
+  <div class="info-section">
+    <h2>infomation</h2>
+    <!-- 各情報を box クラスで囲む -->
+  <div class="info-box">
+    <span class="info-date">2025/09/15</span>
+    <p>多分くすのき祭は9月5日・6日に開催されます。</p>
+  </div>
+
+  <div class="info-box">
+    <span class="info-date">2025/09/15</span>
+    <p>参団検討会の日程は５月中を予定しています。</p>
+  </div>
+
+  <div class="info-box">
+    <span class="info-date">2025/09/15</span>
+    <p>ここから配布する資料を読むことができます。</p>
+  </div>
+
+  <div class="info-box">
+    <span class="info-date">2025/09/15</span>
+    <p>参団用のサイトを作成しました。初の試みなので不具合があった場合は連絡してください。</p>
+  </div>
 
 <script>
 // スムーズスクロール
