@@ -10,6 +10,9 @@
       padding: 0;
       font-family: 'Helvetica Neue', sans-serif;
       background: url('../static/images/bg1.jpg') no-repeat center center;
+      background-size: cover;      /* coverで画面全体にフィット */
+      background-position: center; /* 中央に配置 */
+      background-attachment: fixed;/* スクロールしても固定 */
       color: #333;
       position: relative;
       height: 100vh;
@@ -48,14 +51,16 @@
       z-index: 1;
     }
 
-    .logo {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      width: 80px;
-      height: auto;
-      z-index: 2;
-    }
+    .logo img {
+    width: 150px;   /* 幅を150pxに固定 */
+    height: auto;   /* 高さは自動調整 */
+    object-fit: contain; /* ロゴが歪まないように */
+    position: absolute;
+    top: 20px;      /* 上から20px */
+    left: 20px;     /* 左から20px */
+    z-index: 10;    /* 背景より手前に表示 */
+}
+
 
     /* 左下の白い四角 */
     .bottom-box {
@@ -144,5 +149,6 @@
 </body>
 
 </html>
+
 
 
