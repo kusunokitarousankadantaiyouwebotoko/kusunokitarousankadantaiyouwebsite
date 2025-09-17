@@ -46,8 +46,8 @@
   left: 0;
   width: 0;
   height: 0;
-  border-top: 120px solid #fff;   /* 三角の高さ */
-  border-right: 120px solid transparent; /* 三角の幅 */
+  border-top: 240px solid #fff;   /* 三角の高さ */
+  border-right: 240px solid transparent; /* 三角の幅 */
   z-index: 1; /* ロゴより背面 */
 }
 
@@ -57,34 +57,46 @@
   height: auto;
   object-fit: contain;
   position: absolute;
-  top: 20px;     /* 三角の上に少し余白をつける */
-  left: 20px;
+  top: 10px;     /* 三角の上に少し余白をつける */
+  left: 10px;
   z-index: 10;   /* 三角より前面 */
 }
 
+/* 画面下ボタンボックス */
+  .button-box {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    z-index: 3;
+  }
 
+  /* ボタン */
+  .button-box a {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 6px;
+    position: relative;
+  }
 
-
-    /* 左下の白い四角 */
-    .bottom-box {
-      position: absolute;
-      bottom: 40px;
-      left: 40px;
-      width: 200px;
-      background: #fff;
-      padding: 20px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      z-index: 2;
-    }
-
-    .bottom-box a {
-      display: block;
-      margin-bottom: 10px;
-      text-decoration: none;
-      color: #333;
-      font-weight: bold;
-      transition: color 0.3s;
-    }
+  /* ボタン間の仕切り */
+  .button-box a:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: -10px; /* ボタンの右端から少し外側 */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2px;
+    height: 60%;
+    background: rgba(0, 0, 0, 0.3); /* 完全ではない線 */
+  }
 
     .bottom-box a:hover {
       color: #c5a100; /* 金色っぽいアクセント */
@@ -93,7 +105,7 @@
     /* 参加団体名 */
     .group-name {
       position: absolute;
-      bottom: 40px;
+      bottom: 100px;
       left: 260px; /* 四角の隣 */
       font-size: 2rem;
       font-weight: bold;
@@ -152,6 +164,7 @@
 </body>
 
 </html>
+
 
 
 
