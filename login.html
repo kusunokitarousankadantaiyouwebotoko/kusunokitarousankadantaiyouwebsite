@@ -1,102 +1,103 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>共通ログイン</title>
-<style>
-  body {
-    margin: 0;
-    font-family: 'Arial', sans-serif;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  }
-  .login-container {
-    background: #fff;
-    padding: 50px 30px;
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    text-align: center;
-    width: 90%;
-    max-width: 400px;
-  }
-  .login-container h2 {
-    margin-bottom: 30px;
-    color: #AA9840;
-    font-size: 24px;
-    letter-spacing: 1px;
-  }
-  .input-group { margin-bottom: 15px; }
-  .login-container input[type="password"],
-  .login-container input[type="submit"] {
-    width: 100%;
-    padding: 12px 15px;
-    font-size: 16px;
-    border-radius: 6px;
-    outline: none;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-  }
-  .login-container input[type="password"]:focus {
-    border-color: #AA9840;
-    box-shadow: 0 0 8px #aa9840;
-  }
-  .login-container input[type="submit"] {
-    background-color: #AA9840;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    font-weight: bold;
-  }
-  .login-container input[type="submit"]:hover {
-    background-color: #AA9840;
-  }
-  .error {
-    color: red;
-    margin-top: 10px;
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>共通ログイン</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    }
+    .login-container {
+      background: #fff;
+      padding: 50px 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      text-align: center;
+      width: 90%;
+      max-width: 400px;
+    }
+    .login-container h2 {
+      margin-bottom: 30px;
+      color: #AA9840;
+      font-size: 24px;
+      letter-spacing: 1px;
+    }
+    .input-group { margin-bottom: 15px; }
+    .login-container input[type="password"],
+    .login-container input[type="submit"] {
+      width: 100%;
+      padding: 12px 15px;
+      font-size: 16px;
+      border-radius: 6px;
+      outline: none;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+    .login-container input[type="password"]:focus {
+      border-color: #AA9840;
+      box-shadow: 0 0 8px #aa9840;
+    }
+    .login-container input[type="submit"] {
+      background-color: #AA9840;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .login-container input[type="submit"]:hover {
+      background-color: #AA9840;
+    }
+    .error {
+      color: red;
+      margin-top: 10px;
+    }
+  </style>
 </head>
 <body>
-<div class="login-container">
-  <h2>参加団体ページログイン</h2>
-  <form id="loginForm">
-    <div class="input-group">
-      <input type="password" id="password" placeholder="パスワードを入力">
-    </div>
-    <div class="input-group">
-      <input type="submit" value="ログイン">
-    </div>
-    <div id="errorMsg" class="error"></div>
-  </form>
-</div>
+  <div class="login-container">
+    <h2>参加団体ページログイン</h2>
+    <form id="loginForm">
+      <div class="input-group">
+        <input type="password" id="password" placeholder="パスワードを入力">
+      </div>
+      <div class="input-group">
+        <input type="submit" value="ログイン">
+      </div>
+      <div id="errorMsg" class="error"></div>
+    </form>
+  </div>
 
-<script>
-    // パスワードとリダイレクト先の対応表
+  <script>
     const passwordMap = {
       "3010": "groups/group-3A.html",
       "3020": "groups/group-3B.html",
       "3030": "groups/group-3C.html"
     };
 
-    function checkPassword() {
-      const input = document.getElementById("password").value;
-      const message = document.getElementById("message");
+    // フォームの submit イベントを処理
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+      event.preventDefault(); // フォーム送信をキャンセル
+
+      const input = document.getElementById("password").value.trim();
+      const message = document.getElementById("errorMsg");
 
       if (passwordMap[input]) {
-        // 一致するパスワード → 該当ページにリダイレクト
         window.location.href = passwordMap[input];
       } else {
-        // パスワード間違い
         message.textContent = "パスワードが正しくありません。";
       }
-    }
+    });
   </script>
 </body>
 </html>
+
 
 
 
