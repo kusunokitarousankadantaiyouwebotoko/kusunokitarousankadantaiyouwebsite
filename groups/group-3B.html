@@ -150,10 +150,67 @@
       <img src="../static/images/logo.png" alt="サイトロゴ">
     </div>
 
-  <div class="button-box">
+  <!-- 下部ボタンボックス -->
+<div class="bottom-box">
+  <div class="btn-container">
     <a href="#docs">資料置き場</a>
+  </div>
+  <div class="btn-container">
     <a href="#schedule">日程表</a>
   </div>
+  <div class="btn-container">
+    <a href="#other">その他</a>
+  </div>
+</div>
+
+<style>
+/* 下部固定ボックス */
+.bottom-box {
+  position: fixed;          /* 画面下に固定 */
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 120px;            /* 好きな高さに調整 */
+  background-color: rgba(255,255,255,0.9);
+  display: flex;
+  z-index: 100;
+}
+
+/* 三等分 */
+.btn-container {
+  flex: 1;                  /* 幅を均等に */
+  display: flex;
+  justify-content: center;   /* 中央寄せ */
+  align-items: center;
+  border-left: 1px solid rgba(0,0,0,0.2); /* 左側に仕切り線 */
+}
+
+.btn-container:first-child {
+  border-left: none; /* 一番左は仕切りなし */
+}
+
+/* ボタン */
+.btn-container a {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #AA9840; /* 金色っぽいボタン */
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 6px;
+  transition: background 0.3s;
+}
+
+.btn-container a:hover {
+  background-color: #c5a100;
+}
+</style>
+
+
+<!-- スクロール先の要素 -->
+<div id="docs" style="position:absolute; top:100vh;">ここに資料置き場の内容</div>
+<div id="schedule" style="position:absolute; top:200vh;">ここに日程表の内容</div>
+
 
   <div class="group-name">参加団体名</div>
 
@@ -163,7 +220,22 @@
   </div>
 </body>
 
+  <script>
+document.querySelectorAll('.scroll-btn').forEach(btn => {
+  btn.addEventListener('click', function(e){
+    e.preventDefault(); // 通常のリンク動作を停止
+    const targetId = this.getAttribute('href').substring(1);
+    const targetEl = document.getElementById(targetId);
+    if(targetEl){
+      targetEl.scrollIntoView({ behavior: 'smooth' }); // スムーズスクロール
+    }
+  });
+});
+</script>
+
+
 </html>
+
 
 
 
