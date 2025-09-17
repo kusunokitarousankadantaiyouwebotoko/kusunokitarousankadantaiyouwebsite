@@ -3,43 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>団体ログイン</title>
+  <title>共通ログイン</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
       margin: 0;
-      background: #f3f3f3;
+      font-family: 'Arial', sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     }
-    .container {
-      background: white;
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      width: 300px;
+    .login-container {
+      background: #fff;
+      padding: 50px 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
       text-align: center;
+      width: 90%;
+      max-width: 400px;
     }
-    input {
+    .login-container h2 {
+      margin-bottom: 30px;
+      color: #AA9840;
+      font-size: 24px;
+      letter-spacing: 1px;
+    }
+    .input-group { margin-bottom: 15px; }
+    .login-container input[type="password"],
+    .login-container input[type="submit"] {
       width: 100%;
-      padding: 0.7rem;
-      margin: 0.5rem 0;
-      border-radius: 5px;
+      padding: 12px 15px;
+      font-size: 16px;
+      border-radius: 6px;
+      outline: none;
       border: 1px solid #ccc;
+      box-sizing: border-box;
     }
-    button {
-      background: #AA9840;
-      color: white;
+    .login-container input[type="password"]:focus {
+      border-color: #AA9840;
+      box-shadow: 0 0 8px #aa9840;
+    }
+    .login-container input[type="submit"] {
+      background-color: #AA9840;
+      color: #fff;
       border: none;
-      padding: 0.7rem;
-      width: 100%;
       cursor: pointer;
+      font-weight: bold;
+    }
+    .login-container input[type="submit"]:hover {
+      background-color: #AA9840;
     }
     .error {
       color: red;
-      margin-top: 1rem;
+      margin-top: 10px;
     }
   </style>
 </head>
@@ -77,6 +94,7 @@
 
 </body>
 </html>
+
 
 
 
