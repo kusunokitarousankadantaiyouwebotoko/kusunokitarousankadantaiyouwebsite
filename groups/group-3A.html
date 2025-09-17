@@ -9,13 +9,20 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Helvetica Neue', sans-serif;
-  background: url('../static/images/bg1.jpg') no-repeat center center;
-  background-size: cover;
-  background-attachment: fixed;
   color: #333;
-  position: relative;
-  min-height: 200vh; /* 下にスクロールできる高さを確保 */
 }
+
+/* トップビュー背景 */
+.top-view {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* 画面いっぱい */
+  background: url('../static/images/bg1.jpg') no-repeat center center;
+  background-size: cover;       /* 画面いっぱいにフィット */
+  background-attachment: fixed; /* 固定 */
+  overflow: hidden;             /* 背景上はスクロール不可 */
+}
+
 
 /* 左上三角＋ロゴ（既存コードそのまま） */
 .top-left-triangle {
@@ -127,6 +134,16 @@ body {
   <div class="btn-container"><a href="#other">その他</a></div>
 </div>
 
+  <div class="top-view">
+  <!-- ロゴや装飾、下部ボタンなどここに配置 -->
+</div>
+
+<!-- 下部スクロールセクション -->
+<div id="docs" class="section">資料置き場セクション</div>
+<div id="schedule" class="section">日程表セクション</div>
+<div id="other" class="section">その他セクション</div>
+
+
 
 <script>
 // スムーズスクロール
@@ -141,6 +158,7 @@ document.querySelectorAll('.bottom-box a').forEach(link => {
 
 </body>
 </html>
+
 
 
 
