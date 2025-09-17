@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>参加団体ページ</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Helvetica Neue', sans-serif;
+      background: url('background.jpg') no-repeat center center/cover; /* 後で背景画像に置換 */
+      color: #333;
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* 左上のひし形 */
+    .diamond {
+      position: absolute;
+      top: -50px;
+      left: -50px;
+      width: 150px;
+      height: 150px;
+      background: #fff;
+      transform: rotate(45deg);
+      z-index: 1;
+    }
+
+    .logo {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 80px;
+      height: auto;
+      z-index: 2;
+    }
+
+    /* 左下の白い四角 */
+    .bottom-box {
+      position: absolute;
+      bottom: 40px;
+      left: 40px;
+      width: 200px;
+      background: #fff;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      z-index: 2;
+    }
+
+    .bottom-box a {
+      display: block;
+      margin-bottom: 10px;
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    .bottom-box a:hover {
+      color: #c5a100; /* 金色っぽいアクセント */
+    }
+
+    /* 参加団体名 */
+    .group-name {
+      position: absolute;
+      bottom: 40px;
+      left: 260px; /* 四角の隣 */
+      font-size: 2rem;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+    }
+
+    /* 右側の装飾 */
+    .circle-wrapper {
+      position: absolute;
+      top: 50%;
+      right: -100px;
+      transform: translateY(-50%);
+      z-index: 1;
+    }
+
+    .donut {
+      width: 300px;
+      height: 300px;
+      border: 40px solid rgba(255,255,255,0.4);
+      border-radius: 50%;
+      border-left-color: transparent;
+      border-top-color: transparent;
+    }
+
+    .thin-circle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 380px;
+      height: 380px;
+      border: 1px solid rgba(255,255,255,0.5);
+      border-radius: 50%;
+    }
+  </style>
+</head>
+<body>
+  <div class="diamond"></div>
+  <img src="logo.png" alt="ロゴ" class="logo"> <!-- ロゴ画像を差し替え -->
+
+  <div class="bottom-box">
+    <a href="#docs">資料置き場</a>
+    <a href="#schedule">日程表</a>
+  </div>
+
+  <div class="group-name">参加団体名</div>
+
+  <div class="circle-wrapper">
+    <div class="donut"></div>
+    <div class="thin-circle"></div>
+  </div>
+</body>
+</html>
