@@ -39,28 +39,29 @@
     font-size: 40px;
   }
 
-    /* 左上のひし形 */
-.diamond {
+    /* 左上の白い三角 */
+.top-left-triangle {
   position: absolute;
-  top: 10px;       /* ロゴより少し下に配置 */
-  left: 10px;      /* ロゴと同じ位置から開始 */
-  width: 180px;    /* ロゴより少し大きく */
-  height: 180px;
-  background: #fff;
-  transform: rotate(45deg);
-  z-index: 5;      /* ロゴより下に表示 */
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-top: 120px solid #fff;   /* 三角の高さ */
+  border-right: 120px solid transparent; /* 三角の幅 */
+  z-index: 5; /* ロゴより背面 */
 }
 
 /* ロゴ画像 */
 .logo img {
-  width: 150px;    /* 幅150px */
+  width: 80px;   /* 小さめサイズ */
   height: auto;
   object-fit: contain;
   position: absolute;
-  top: 20px;       /* ひし形の上に位置 */
+  top: 20px;     /* 三角の上に少し余白をつける */
   left: 20px;
-  z-index: 10;     /* ひし形より前面に表示 */
+  z-index: 10;   /* 三角より前面 */
 }
+
 
 
 
@@ -151,6 +152,7 @@
 </body>
 
 </html>
+
 
 
 
