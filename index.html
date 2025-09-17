@@ -12,6 +12,14 @@
     overflow-x: hidden;
   }
 
+  <script>
+// ページ読み込み時にログイン済みかチェック
+if(localStorage.getItem("site_logged_in") !== "true"){
+    alert("ログインが必要です");
+    window.location.href = "site_login.html";
+}
+</script>
+
   /* カスタムフォント読み込み */
   @font-face {/*おしゃ文字*/
     font-family: 'MajorMonoDisplay';
@@ -408,6 +416,7 @@ closeBtn.addEventListener("click", () => {
 
 </body>
 </html>
+
 
 
 
