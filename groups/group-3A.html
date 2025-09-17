@@ -42,6 +42,33 @@ body {
   z-index: 10;
 }
 
+  /* 右側装飾 */
+.circle-wrapper {
+  position: absolute;
+  top: 50%;
+  right: -100px;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+.donut {
+  width: 300px;
+  height: 300px;
+  border: 40px solid rgba(255,255,255,0.4);
+  border-radius: 50%;
+  border-left-color: transparent;
+  border-top-color: transparent;
+}
+.thin-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 380px;
+  height: 380px;
+  border: 1px solid rgba(255,255,255,0.5);
+  border-radius: 50%;
+}
+
 /* 画面下の三等分ボックス */
 .bottom-box {
   position: fixed;
@@ -107,6 +134,11 @@ body {
   </div>
   <div class="group-name">参加団体名</div>
 
+  <div class="circle-wrapper">
+    <div class="donut"></div>
+    <div class="thin-circle"></div>
+  </div>
+
   <!-- 下部ボタン -->
   <div class="bottom-box">
     <a href="#docs">資料置き場</a>
@@ -133,4 +165,5 @@ document.querySelectorAll('.bottom-box a').forEach(link => {
 
 </body>
 </html>
+
 
