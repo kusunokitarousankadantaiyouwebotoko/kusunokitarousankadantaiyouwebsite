@@ -71,7 +71,7 @@ body {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 120px;
+  height: 90px;
   background-color: rgba(255,255,255,0.95);
   display: flex;
   z-index: 100;
@@ -87,27 +87,12 @@ body {
 .btn-container a {
   display: inline-block;
   padding: 12px 24px;
-  background-color: #AA9840;
-  color: #fff;
+  color: #AA9840;
   text-decoration: none;
   font-weight: bold;
   border-radius: 6px;
   transition: background 0.3s;
 }
-.btn-container a:hover { background-color: #c5a100; }
-
-/* 下のセクション */
-.section {
-  height: 100vh; /* 画面いっぱい */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 2rem;
-  font-weight: bold;
-}
-#docs { background-color: #f9f9f9; }
-#schedule { background-color: #eee; }
-#other { background-color: #ddd; }
 
 /* 参加団体名 */
 .group-name {
@@ -142,10 +127,6 @@ body {
   <div class="btn-container"><a href="#other">その他</a></div>
 </div>
 
-<!-- 下にスクロールするセクション -->
-<div id="docs" class="section">資料置き場セクション</div>
-<div id="schedule" class="section">日程表セクション</div>
-<div id="other" class="section">その他セクション</div>
 
 <script>
 // スムーズスクロール
@@ -160,6 +141,7 @@ document.querySelectorAll('.bottom-box a').forEach(link => {
 
 </body>
 </html>
+
 
 
 
