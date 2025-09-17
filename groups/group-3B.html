@@ -1,250 +1,164 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>参加団体ページ</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Helvetica Neue', sans-serif;
-      background: url('../static/images/bg1.jpg') no-repeat center center;
-      background-size: cover;      /* coverで画面全体にフィット */
-      background-position: center; /* 中央に配置 */
-      background-attachment: fixed;/* スクロールしても固定 */
-      color: #333;
-      position: relative;
-      height: 100vh;
-      overflow: hidden;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>参加団体ページ</title>
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Helvetica Neue', sans-serif;
+  color: #333;
+}
 
-    .bg {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background-size: cover;
-    background-position: center;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-    z-index: 0;
-  }
-  .bg.active { opacity: 1; }
+/* トップビュー背景 */
+.top-view {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: url('../static/images/bg1.jpg') no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed;
+  overflow: hidden;
+}
 
-  .hero-text p {
-    position: relative;
-    font-family: 'MonsieurLaDoulaise', sans-serif;
-    z-index: 1;
-    color: rgb(170, 152, 64);
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
-    font-size: 40px;
-  }
-
-    /* 左上の白い三角 */
+/* 左上三角＋ロゴ */
 .top-left-triangle {
   position: absolute;
   top: 0;
   left: 0;
   width: 0;
   height: 0;
-  border-top: 160px solid #fff;   /* 三角の高さ */
-  border-right: 160px solid transparent; /* 三角の幅 */
-  z-index: 1; /* ロゴより背面 */
+  border-top: 160px solid #fff;
+  border-right: 160px solid transparent;
+  z-index: 1;
 }
-
-/* ロゴ画像 */
 .logo img {
-  width: 80px;   /* 小さめサイズ */
+  width: 60px;
   height: auto;
   object-fit: contain;
   position: absolute;
-  top: 10px;     /* 三角の上に少し余白をつける */
+  top: 10px;
   left: 10px;
-  z-index: 10;   /* 三角より前面 */
+  z-index: 10;
 }
 
-/* 画面下ボタンボックス */
-  .button-box {
-    position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    z-index: 100;
-  }
+/* 右側の装飾 */
+.circle-wrapper {
+  position: absolute;
+  top: 50%;
+  right: -100px;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+.donut {
+  width: 300px;
+  height: 300px;
+  border: 40px solid rgba(255,255,255,0.4);
+  border-radius: 50%;
+  border-left-color: transparent;
+  border-top-color: transparent;
+}
+.thin-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 380px;
+  height: 380px;
+  border: 1px solid rgba(255,255,255,0.5);
+  border-radius: 50%;
+}
 
-  /* ボタン */
-  .button-box a {
-    display: inline-block;
-    padding: 12px 24px;
-    background-color: rgba(255, 255, 255, 0.9);
-    color: #000;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 6px;
-    position: relative;
-  }
+/* 参加団体名 */
+.group-name {
+  position: absolute;
+  bottom: 150px;
+  left: 260px;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+}
 
-  /* ボタン間の仕切り */
-  .button-box a:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    right: -10px; /* ボタンの右端から少し外側 */
-    top: 50%;
-    transform: translateY(-50%);
-    width: 2px;
-    height: 60%;
-    background: rgba(0, 0, 0, 0.3); /* 完全ではない線 */
-  }
-
-    .bottom-box a:hover {
-      color: #c5a100; /* 金色っぽいアクセント */
-    }
-
-    /* 参加団体名 */
-    .group-name {
-      position: absolute;
-      bottom: 100px;
-      left: 260px; /* 四角の隣 */
-      font-size: 2rem;
-      font-weight: bold;
-      color: #fff;
-      text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
-    }
-
-    /* 右側の装飾 */
-    .circle-wrapper {
-      position: absolute;
-      top: 50%;
-      right: -100px;
-      transform: translateY(-50%);
-      z-index: 1;
-    }
-
-    .donut {
-      width: 300px;
-      height: 300px;
-      border: 40px solid rgba(255,255,255,0.4);
-      border-radius: 50%;
-      border-left-color: transparent;
-      border-top-color: transparent;
-    }
-
-    .thin-circle {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 380px;
-      height: 380px;
-      border: 1px solid rgba(255,255,255,0.5);
-      border-radius: 50%;
-    }
-  </style>
-</head>
-<body>
-  <div class="top-left-triangle"></div>
-  <!-- ロゴ -->
-    <div class="logo">
-      <img src="../static/images/logo.png" alt="サイトロゴ">
-    </div>
-
-  <!-- 下部ボタンボックス -->
-<div class="bottom-box">
-  <div class="btn-container">
-    <a href="#docs">資料置き場</a>
-  </div>
-  <div class="btn-container">
-    <a href="#schedule">日程表</a>
-  </div>
-  <div class="btn-container">
-    <a href="#other">その他</a>
-  </div>
-</div>
-
-<style>
 /* 下部固定ボックス */
 .bottom-box {
-  position: fixed;          /* 画面下に固定 */
+  position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 120px;            /* 好きな高さに調整 */
-  background-color: rgba(255,255,255,0.9);
+  height: 80px;
+  background-color: rgba(255,255,255,0.95);
   display: flex;
   z-index: 100;
 }
-
-/* 三等分 */
 .btn-container {
-  flex: 1;                  /* 幅を均等に */
+  flex: 1;
   display: flex;
-  justify-content: center;   /* 中央寄せ */
+  justify-content: center;
   align-items: center;
-  border-left: 1px solid rgba(0,0,0,0.2); /* 左側に仕切り線 */
+  border-left: 1px solid rgba(0,0,0,0.2);
 }
-
-.btn-container:first-child {
-  border-left: none; /* 一番左は仕切りなし */
-}
-
-/* ボタン */
+.btn-container:first-child { border-left: none; }
 .btn-container a {
   display: inline-block;
   padding: 12px 24px;
-  background-color: #AA9840; /* 金色っぽいボタン */
-  color: #fff;
+  color: #AA9840;
   text-decoration: none;
   font-weight: bold;
   border-radius: 6px;
   transition: background 0.3s;
 }
 
-.btn-container a:hover {
-  background-color: #c5a100;
+/* スクロール用セクション */
+.section {
+  height: 100vh; /* 画面サイズに合わせる */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  background-color: #f0f0f0; /* 背景色で区別 */
+  border-top: 1px solid #ccc;
 }
 </style>
+</head>
+<body>
 
-
-<!-- スクロール先の要素 -->
-<div id="docs" style="position:absolute; top:100vh;">ここに資料置き場の内容</div>
-<div id="schedule" style="position:absolute; top:200vh;">ここに日程表の内容</div>
-
-
+<div class="top-view">
+  <div class="top-left-triangle"></div>
+  <div class="logo">
+    <img src="../static/images/logo.png" alt="サイトロゴ">
+  </div>
   <div class="group-name">参加団体名</div>
-
   <div class="circle-wrapper">
     <div class="donut"></div>
     <div class="thin-circle"></div>
   </div>
-</body>
+</div>
 
-  <script>
-document.querySelectorAll('.scroll-btn').forEach(btn => {
-  btn.addEventListener('click', function(e){
-    e.preventDefault(); // 通常のリンク動作を停止
-    const targetId = this.getAttribute('href').substring(1);
-    const targetEl = document.getElementById(targetId);
-    if(targetEl){
-      targetEl.scrollIntoView({ behavior: 'smooth' }); // スムーズスクロール
-    }
+<!-- 下部固定ボタン -->
+<div class="bottom-box">
+  <div class="btn-container"><a href="#docs">資料置き場</a></div>
+  <div class="btn-container"><a href="#schedule">日程表</a></div>
+  <div class="btn-container"><a href="#other">その他</a></div>
+</div>
+
+<!-- スクロールセクション -->
+<div id="docs" class="section">資料置き場セクション</div>
+<div id="schedule" class="section">日程表セクション</div>
+<div id="other" class="section">その他セクション</div>
+
+<script>
+// スムーズスクロール
+document.querySelectorAll('.bottom-box a').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    target.scrollIntoView({ behavior: 'smooth' });
   });
 });
 </script>
 
-
+</body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
