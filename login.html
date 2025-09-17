@@ -82,7 +82,7 @@
     "3030": "groups/group-3C.html"
   };
 
-  document.getElementById("loginForm").addEventListener("submit", function(event) {
+  document.getElementById("loginForm").addEventListener("submit", function(e) {
     event.preventDefault(); // ✅ フォームの送信を防ぐ
 
     const input = document.getElementById("password").value.trim();
@@ -98,6 +98,7 @@
 
 </body>
 </html>
+
 
 
 
