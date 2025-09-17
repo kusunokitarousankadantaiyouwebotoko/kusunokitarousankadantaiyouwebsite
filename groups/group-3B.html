@@ -40,26 +40,28 @@
   }
 
     /* 左上のひし形 */
-    .diamond {
-      position: absolute;
-      top: -50px;
-      left: -50px;
-      width: 150px;
-      height: 150px;
-      background: #fff;
-      transform: rotate(45deg);
-      z-index: 1;
-    }
-
-    .logo img {
-    width: 150px;   /* 幅を150pxに固定 */
-    height: auto;   /* 高さは自動調整 */
-    object-fit: contain; /* ロゴが歪まないように */
-    position: absolute;
-    top: 20px;      /* 上から20px */
-    left: 20px;     /* 左から20px */
-    z-index: 10;    /* 背景より手前に表示 */
+.diamond {
+  position: absolute;
+  top: 10px;       /* ロゴより少し下に配置 */
+  left: 10px;      /* ロゴと同じ位置から開始 */
+  width: 180px;    /* ロゴより少し大きく */
+  height: 180px;
+  background: #fff;
+  transform: rotate(45deg);
+  z-index: 5;      /* ロゴより下に表示 */
 }
+
+/* ロゴ画像 */
+.logo img {
+  width: 150px;    /* 幅150px */
+  height: auto;
+  object-fit: contain;
+  position: absolute;
+  top: 20px;       /* ひし形の上に位置 */
+  left: 20px;
+  z-index: 10;     /* ひし形より前面に表示 */
+}
+
 
 
     /* 左下の白い四角 */
@@ -149,6 +151,7 @@
 </body>
 
 </html>
+
 
 
 
