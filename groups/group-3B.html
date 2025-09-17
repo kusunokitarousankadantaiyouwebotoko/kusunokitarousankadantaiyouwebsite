@@ -9,7 +9,7 @@
       margin: 0;
       padding: 0;
       font-family: 'Helvetica Neue', sans-serif;
-      background: url('background.jpg') no-repeat center center/cover; /* 後で背景画像に置換 */
+      background: url('static/images/bg1.jpg') no-repeat center center/cover;
       color: #333;
       position: relative;
       height: 100vh;
@@ -105,7 +105,10 @@
 </head>
 <body>
   <div class="diamond"></div>
-  <img src="logo.png" alt="ロゴ" class="logo"> <!-- ロゴ画像を差し替え -->
+  <!-- ロゴ -->
+    <div class="logo">
+      <img src="static/images/logo.png" alt="サイトロゴ">
+    </div>
 
   <div class="bottom-box">
     <a href="#docs">資料置き場</a>
@@ -119,4 +122,5 @@
     <div class="thin-circle"></div>
   </div>
 </body>
+
 </html>
