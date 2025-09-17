@@ -1,1 +1,165 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>参加団体ページ</title>
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Helvetica Neue', sans-serif;
+  color: #333;
+}
+
+/* トップビュー背景 */
+.top-view {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: url('../static/images/bg1.jpg') no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed;
+  overflow: hidden;
+}
+
+/* 左上三角＋ロゴ */
+.top-left-triangle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-top: 160px solid #fff;
+  border-right: 160px solid transparent;
+  z-index: 1;
+}
+.logo img {
+  width: 70px;
+  height: auto;
+  object-fit: contain;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 10;
+}
+
+/* 右側の装飾 */
+.circle-wrapper {
+  position: absolute;
+  top: 50%;
+  right: -100px;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+.donut {
+  width: 300px;
+  height: 300px;
+  border: 40px solid rgba(255,255,255,0.4);
+  border-radius: 50%;
+  border-left-color: transparent;
+  border-top-color: transparent;
+}
+.thin-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 380px;
+  height: 380px;
+  border: 1px solid rgba(255,255,255,0.5);
+  border-radius: 50%;
+}
+
+/* 参加団体名 */
+.group-name {
+  position: absolute;
+  bottom: 150px;
+  left: 260px;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+}
+
+/* 下部固定ボックス */
+.bottom-box {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background-color: rgba(255,255,255,0.95);
+  display: flex;
+  z-index: 100;
+}
+.btn-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-left: 1px solid rgba(0,0,0,0.2);
+}
+.btn-container:first-child { border-left: none; }
+.btn-container a {
+  display: inline-block;
+  padding: 12px 24px;
+  color: #AA9840;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 6px;
+  transition: background 0.3s;
+}
+
+/* スクロール用セクション */
+.section {
+  height: 100vh; /* 画面サイズに合わせる */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  background-color: rgba(255,255,255,0.75); /* 背景色で区別 */
+  border-top: 1px solid #ccc;
+}
+</style>
+</head>
+<body>
+
+<div class="top-view">
+  <div class="top-left-triangle"></div>
+  <div class="logo">
+    <img src="../static/images/logo.png" alt="サイトロゴ">
+  </div>
+  <div class="group-name">参加団体名</div>
+  <div class="circle-wrapper">
+    <div class="donut"></div>
+    <div class="thin-circle"></div>
+  </div>
+</div>
+
+<!-- 下部固定ボタン -->
+<div class="bottom-box">
+  <div class="btn-container"><a href="#docs">submission</a></div>
+  <div class="btn-container"><a href="../sche.html">schedule</a></div>
+  <div class="btn-container"><a href="../mate.html">materials</a></div>
+</div>
+
+<!-- スクロールセクション -->
+<div id="docs" class="section">
+  submission
+</div>
+
+<script>
+// スムーズスクロール
+document.querySelectorAll('.bottom-box a').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    target.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+</script>
+
+</body>
+</html>
 
