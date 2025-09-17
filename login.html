@@ -3,15 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>団体ログイン</title>
+<title>共通ログイン</title>
 <style>
-  @font-face {
-    font-family: 'KleeOne';
-    src: url('./static/fonts/KleeOne-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-  }
-
   body {
     margin: 0;
     font-family: 'Arial', sans-serif;
@@ -29,7 +22,6 @@
     text-align: center;
     width: 90%;
     max-width: 400px;
-    font-family: 'KleeOne', sans-serif;
   }
   .login-container h2 {
     margin-bottom: 30px;
@@ -37,9 +29,7 @@
     font-size: 24px;
     letter-spacing: 1px;
   }
-  .input-group {
-    margin-bottom: 15px;
-  }
+  .input-group { margin-bottom: 15px; }
   .login-container input[type="password"],
   .login-container input[type="submit"] {
     width: 100%;
@@ -49,8 +39,6 @@
     outline: none;
     border: 1px solid #ccc;
     box-sizing: border-box;
-    transition: border 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-    font-family: 'KleeOne', sans-serif;
   }
   .login-container input[type="password"]:focus {
     border-color: #AA9840;
@@ -74,7 +62,7 @@
 </head>
 <body>
 <div class="login-container">
-  <h2>団体ログイン</h2>
+  <h2>共通ページログイン</h2>
   <form id="loginForm">
     <div class="input-group">
       <input type="password" id="password" placeholder="パスワードを入力">
@@ -87,19 +75,14 @@
 </div>
 
 <script>
-  // 団体ごとのパスワードとリダイレクト先
-  const groups = {
-    "aaa123": "groupA.html",
-    "bbb456": "groupB.html",
-    "ccc789": "groupC.html",
-    "common": "common.html" // 全体資料置き場など
-  };
+  const correctPassword = "common123";  // パスワードを設定
+  const redirectPage = "common.html";   // リダイレクト先
 
   document.getElementById("loginForm").addEventListener("submit", function(e) {
     e.preventDefault();
     const pw = document.getElementById("password").value.trim();
-    if (groups[pw]) {
-      window.location.href = groups[pw]; // 団体専用ページに移動
+    if (pw === correctPassword) {
+      window.location.href = redirectPage;
     } else {
       document.getElementById("errorMsg").textContent = "パスワードが違います。";
     }
@@ -107,4 +90,3 @@
 </script>
 </body>
 </html>
-
