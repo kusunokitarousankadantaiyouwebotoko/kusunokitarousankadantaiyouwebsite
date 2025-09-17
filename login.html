@@ -75,21 +75,29 @@
 </div>
 
 <script>
-  const correctPassword = "1";  // パスワードを設定
-  const redirectPage = "grop.html";   // リダイレクト先
+    // パスワードとリダイレクト先の対応表
+    const passwordMap = {
+      "3010": "groups/group-3A.html",
+      "3020": "groups/group-3B.html",
+      "3030": "groups/group-3C.html"
+    };
 
-  document.getElementById("loginForm").addEventListener("submit", function(e) {
-    e.preventDefault();
-    const pw = document.getElementById("password").value.trim();
-    if (pw === correctPassword) {
-      window.location.href = redirectPage;
-    } else {
-      document.getElementById("errorMsg").textContent = "パスワードが違います。";
+    function checkPassword() {
+      const input = document.getElementById("password").value;
+      const message = document.getElementById("message");
+
+      if (passwordMap[input]) {
+        // 一致するパスワード → 該当ページにリダイレクト
+        window.location.href = passwordMap[input];
+      } else {
+        // パスワード間違い
+        message.textContent = "パスワードが正しくありません。";
+      }
     }
-  });
-</script>
+  </script>
 </body>
 </html>
+
 
 
 
