@@ -62,11 +62,15 @@
 </head>
 <body>
 
-<div class="container">
+<div class="login-container">
   <h2>団体ログイン</h2>
   <form id="loginForm">
-    <input type="password" id="password" placeholder="パスワードを入力" required>
-    <button type="submit">ログイン</button>
+    <div class="input-group">
+      <input type="password" id="password" placeholder="パスワードを入力">
+    </div>
+    <div class="input-group">
+      <input type="submit" value="ログイン">
+    </div>
     <div id="errorMsg" class="error"></div>
   </form>
 </div>
@@ -94,6 +98,7 @@
 
 </body>
 </html>
+
 
 
 
